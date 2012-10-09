@@ -27,6 +27,6 @@
     "request" : "2.9.x"
   },
   "scripts": {
-    "start" : "NODE_ENV=prouction node app.js"
+    "start" : "NODE_ENV=production node app.js"
   }
 }

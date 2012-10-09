@@ -2,5 +2,5 @@
   "HTTPS"       : false,
   "HOST"        : "127.0.0.1",
   "REQ_TIMEOUT" : 60000,
-  "PORT"        : 3000
+  "PORT"        : 80
 }
