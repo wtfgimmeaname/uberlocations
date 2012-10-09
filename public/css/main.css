@@ -9,20 +9,29 @@ footer { display: none; }
 .ajax-loader { display: none; }
 .form-buttons { padding-top: 23px; }
 
+/* Bootstrap messes with google maps */
+#google-map > div {
+  height: 400px;
+  border: 1px solid #ccc;
+}
+#google-map img,
+.goog-map img { max-width: none; }
+
+#google-maps label,
+.goog-map label {
+  width: auto;
+  display: inline;
+}
+
+.thumbnails li > div { min-height: 420px; }
+.thumbnails .goog-map > div {
+  height: 200px;
+  border: 1px solid #ccc;
+}
 .form-inline .help-inline {
   display: none;
   padding-left: 0;
   font-size: 12px;
 }
 .form-inline .error .help-inline { display: block; }
-/* Bootstrap messes with google maps */
 .show-btns a { margin-left: 10px; }
-#google-map {
-  height: 400px;
-  border: 1px solid #ccc;
-}
-#google-map img { max-width: none; }
-#google-maps label {
-  width: auto;
-  display: inline;
-}

@@ -15,11 +15,15 @@ define(
           }
         });
       },
-      renderMap: function(model, ele) {
+      renderMap: function(model, ele, zoom) {
+        var gMap = $(document.createElement('div'));
+        $(ele).empty().append(gMap);
+
+        var zlvl = (zoom) ? zoom : 15;
         var pos  = new google.maps.LatLng(40.730885,-73.997383);
-        var opts = { zoom: 15, mapTypeId: google.maps.MapTypeId.ROADMAP, center: pos };
+        var opts = { zoom: zlvl, mapTypeId: google.maps.MapTypeId.ROADMAP, center: pos };
         var geo  = new google.maps.Geocoder();
-        var map  = new google.maps.Map(ele, opts);
+        var map  = new google.maps.Map($(ele).find('> div')[0], opts);
 
         geo.geocode({ "address" : model.get('address') }, function(resp, stat) {
           if (stat == google.maps.GeocoderStatus.OK) {
@@ -28,6 +32,7 @@ define(
             var marker = new google.maps.Marker({ map: map, position: newPos });
           }
         });
+        return map;
       }
     }
   }

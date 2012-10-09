@@ -13,10 +13,10 @@ define('UberLocsEditView', [
     initialize: function() { this.template = _.template(tpl); },
 
     events: {
-      "focus .input-prepend input" : "removeErrMsg",
-      "click .save-btn"            : "saveUberLoc",
-      "click .back-btn"            : "goBack",
-      "click .delete-btn"          : "deleteUberLoc"
+      "focus input"       : "removeErrMsg",
+      "click .save-btn"   : "saveUberLoc",
+      "click .back-btn"   : "goBack",
+      "click .delete-btn" : "deleteUberLoc"
     },
 
     render: function() {
@@ -45,7 +45,11 @@ define('UberLocsEditView', [
 
       // Build coordinates
       this.model.set({ name: name, address: address }, { silent: true });
-      google.getCoordinates(address, this);
+      if (this.model.isValid()) { google.getCoordinates(address, this); }
+      else {
+        var tst = this.model.validate({ name: name, address: address });
+        this.renderErrMsg(tst.errors);
+      }
     },
 
     coordsCallback: function(lat, lng) {

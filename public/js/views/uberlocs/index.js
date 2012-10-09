@@ -2,10 +2,11 @@ define('UberLocsListView', [
   'jquery',
   'underscore',
   'backbone',
+  'googlemaps',
   'moment',
   'text!templates/uberlocs/index.html',
   'UberLocsCollection'
-], function($, _, Backbone, moment, tpl, UberLocsCollection) {
+], function($, _, Backbone, google, moment, tpl, UberLocsCollection) {
   var UberLocsListView;
 
   UberLocsListView = Backbone.View.extend({
@@ -32,6 +33,11 @@ define('UberLocsListView', [
       this.getData(function(collection) {
         tmpl = that.template({ uberLocs: collection.toJSON() });
         $(that.el).html(tmpl);
+
+        _.each(collection.models, function(model) {
+          ele = $(that.el).find('#'+model.get('_id'))[0];
+          google.renderMap(model, ele, 12);
+        });
 
         callback();
       });

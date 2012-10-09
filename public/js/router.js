@@ -21,7 +21,6 @@ define('Router', [
     },
 
     initialize: function() {
-      this.uberLocView      = {};
       this.uberLocsView     = {};
       this.uberLocsEditView = {};
       this.headerView = new HeaderView();
@@ -35,6 +34,7 @@ define('Router', [
     showUberLocs: function() {
       var that = this;
       this.headerView.select('list-menu');
+
       if (!this.uberLocsListView) { this.uberLocsListView = new UberLocsListView(); }
       this.uberLocsListView.render(function() {
         that.elms['page-content'].html(that.uberLocsListView.el);
@@ -75,7 +75,6 @@ define('Router', [
         that.navigate('#/uberlocs', { trigger: true });
       });
       view.model.on('save-success', function(id) {
-        console.log('add save sucess');
         delete view;
         that.navigate('#/uberloc/' + id, { trigger: true });
       });
@@ -100,12 +99,10 @@ define('Router', [
             that.navigate('#/uberloc/' + id, { trigger: true });
           });
           view.model.on('save-success', function() {
-            console.log('edit save sucess');
             delete view;
             that.navigate('#/uberloc/' + id, { trigger: true });
           });
           view.model.on('delete-success', function() {
-            console.log('delete success');
             delete view;
             that.navigate('uberlocs', { trigger: true });
           });

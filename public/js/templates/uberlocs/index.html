@@ -25,7 +25,7 @@
         <% _.each(uberLocs, function(loc) { %>
           <li class="span4">
             <div class="thumbnail">
-              <div class="goog-map"></div>
+              <div id="<%- loc._id %>" class="goog-map"></div>
               <div class="caption">
                 <h3><%- loc.name %></h3>
                 <p class="address"><%- loc.address %></p>
