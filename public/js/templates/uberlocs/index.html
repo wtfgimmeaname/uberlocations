@@ -11,24 +11,36 @@
         </div>
       </div>
     </header>
-    <ul class="thumbnails">
-    <% _.each(uberLocs, function(loc) { %>
-      <li class="span4">
-        <div class="thumbnail">
-          <div class="goog-map"></div>
-          <div class="caption">
-            <h3><%- loc.name %></h3>
-            <p class="address"><%- loc.address %></p>
-            <p class="coords">
-              Coordinates: <span><%- loc.lat %>, <%- loc.lng %></span>
-            </p>
-            <p>
-              <a href="#/uberloc/<%- loc._id %>"
-                 class="btn btn-primary">View</a>
-            </p>
-          </div>
-        </div>
-      </li>
-    <% }); %>
+    <% if (uberLocs.length === 0) { %>
+      <div class="hero-unit">
+        <h1>Welcome!</h1>
+        <p>You haven't saved any locations yet. To do so, click the button below.</p>
+        <p>
+          <a href="#/uberlocs/new"
+             class="btn btn-primary btn-large">Create A Location</a>
+        </p>
+      </div>
+    <% } else { %>
+      <ul class="thumbnails">
+        <% _.each(uberLocs, function(loc) { %>
+          <li class="span4">
+            <div class="thumbnail">
+              <div class="goog-map"></div>
+              <div class="caption">
+                <h3><%- loc.name %></h3>
+                <p class="address"><%- loc.address %></p>
+                <p class="coords">
+                  Coordinates: <span><%- loc.lat %>, <%- loc.lng %></span>
+                </p>
+                <p>
+                  <a href="#/uberloc/<%- loc._id %>"
+                     class="btn btn-primary">View</a>
+                </p>
+              </div>
+            </div>
+          </li>
+        <% }); %>
+      </ul>
+    <% } %>
   </div>
 </div>

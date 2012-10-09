@@ -17,7 +17,10 @@ footer { display: none; }
 .form-inline .error .help-inline { display: block; }
 /* Bootstrap messes with google maps */
 .show-btns a { margin-left: 10px; }
-#google-map { height: 400px; }
+#google-map {
+  height: 400px;
+  border: 1px solid #ccc;
+}
 #google-map img { max-width: none; }
 #google-maps label {
   width: auto;

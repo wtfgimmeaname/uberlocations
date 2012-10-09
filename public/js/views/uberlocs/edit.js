@@ -48,13 +48,18 @@ define('UberLocsEditView', [
       google.getCoordinates(address, this);
     },
 
-    deleteUberLoc: function(e) {
-      e.preventDefault();
+    coordsCallback: function(lat, lng) {
+      var that = this;
 
-      this.model.destroy({
+      that.model.save({
+        lat: parseFloat(lat.toFixed(3)),
+        lng: parseFloat(lng.toFixed(3))
+      }, {
+        silent  : false,
+        sync    : true,
         success : function(model, res) {
           if (res && res.errors) { that.renderErrMsg(res.errors); }
-          else { model.trigger('delete-success'); }
+          else { that.model.trigger('save-success', model.get('_id')); }
         },
         error: function(model, res) {
           if (res && res.errors) { that.renderErrMsg(res.errors); }
@@ -64,18 +69,13 @@ define('UberLocsEditView', [
       });
     },
 
-    coordsCallback: function(lat, lng) {
-      var that = this;
+    deleteUberLoc: function(e) {
+      e.preventDefault();
 
-      that.model.save({
-        lat: parseFloat(lat.toFixed(4)),
-        lng: parseFloat(lat.toFixed(4))
-      }, {
-        silent  : false,
-        sync    : true,
+      this.model.destroy({
         success : function(model, res) {
           if (res && res.errors) { that.renderErrMsg(res.errors); }
-          else { model.trigger('save-success', model.get('_id')); }
+          else { model.trigger('delete-success'); }
         },
         error: function(model, res) {
           if (res && res.errors) { that.renderErrMsg(res.errors); }
