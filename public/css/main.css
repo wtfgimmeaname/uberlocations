@@ -1,22 +1,15 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+footer { display: none; }
+.ajax-loader { display: none; }
+.form-buttons { padding-top: 23px; }
 
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.form-inline .help-inline {
+  display: none;
+  padding-left: 0;
+  font-size: 12px;
+}
+.form-inline .error .help-inline { display: block; }
+#google-map { height: 400px; }

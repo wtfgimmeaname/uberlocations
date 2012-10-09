@@ -1,0 +1,29 @@
+{
+  "development": {
+    "main"    : {
+      "USER"     : "",
+      "PASS"     : "",
+      "HOST"     : "localhost",
+      "PORT"     : "27017",
+      "DATABASE" : "uber-dev"
+    }
+  },
+  "test": {
+    "main"    : {
+      "USER"     : "",
+      "PASS"     : "",
+      "HOST"     : "localhost",
+      "PORT"     : "27017",
+      "DATABASE" : "uber-test"
+    }
+  },
+  "production": {
+    "main"    : {
+      "USER"     : "",
+      "PASS"     : "",
+      "HOST"     : "localhost",
+      "PORT"     : "27017",
+      "DATABASE" : "uber-main"
+    }
+  }
+}
