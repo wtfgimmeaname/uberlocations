@@ -1,4 +1,7 @@
+html { height: 100%; }
 body {
+  height: 100%;
+  margin: 0;
   padding-top: 60px;
   padding-bottom: 40px;
 }
@@ -12,4 +15,11 @@ footer { display: none; }
   font-size: 12px;
 }
 .form-inline .error .help-inline { display: block; }
+/* Bootstrap messes with google maps */
+.show-btns a { margin-left: 10px; }
 #google-map { height: 400px; }
+#google-map img { max-width: none; }
+#google-maps label {
+  width: auto;
+  display: inline;
+}

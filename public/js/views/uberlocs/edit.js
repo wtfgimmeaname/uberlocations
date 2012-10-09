@@ -44,13 +44,16 @@ define('UberLocsEditView', [
 
       // Build coordinates
       this.model.set({ name: name, address: address }, { silent: true });
-      google.getCoordinates(address, this.model, this.makeModel);
+      google.getCoordinates(address, this);
     },
 
-    makeModel: function() {
+    coordsCallback: function(lat, lng) {
       var that = this;
 
-      this.model.save({}, {
+      that.model.save({
+        lat: parseFloat(lat.toFixed(4)),
+        lng: parseFloat(lat.toFixed(4))
+      }, {
         silent  : false,
         sync    : true,
         success : function(model, res) {
