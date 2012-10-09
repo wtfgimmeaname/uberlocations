@@ -15,7 +15,7 @@ define('Router', [
       ''                  : 'showUberLocs',
       'uberlocs'          : 'showUberLocs',
       'uberlocs/new'      : 'addUberLocs',
-      'uberlocs/:id'      : 'showUberLoc',
+      'uberloc/:id'       : 'showUberLoc',
       'uberlocs/:id/edit' : 'editUberLocs',
       '*actions'          : 'defaultAction'
     },
@@ -54,17 +54,10 @@ define('Router', [
 
           view = new UberLocView({ model: model });
           that.elms['page-content'].html(view.render().el);
-          view.model.on('delete-success', function() {
-            delete view;
-            that.navigate('uberlocs', { trigger: true });
-          });
         },
-        error   : function(model, res) {
-          if (res.status === 404) {
-            // TODO: handle 404 Not Found
-          } else if (res.status === 500) {
-            // TODO: handle 500 Internal Server Error
-          }
+        error : function(model, res) {
+          if (res.status === 404) {} // TODO: handle 404 Not Found
+          else if (res.status === 500) {} // TODO: handle 500 Internal Server Error
         }
       });
     },
@@ -102,12 +95,19 @@ define('Router', [
           view = new UberLocsEditView({ model: model });
           that.elms['page-content'].html(view.render().el);
           view.on('back', function() {
+            console.log('going back');
             delete view;
             that.navigate('#/uberlocs/' + id, { trigger: true });
           });
           view.model.on('save-success', function() {
+            console.log('save sucess');
             delete view;
             that.navigate('#/uberlocs/' + id, { trigger: true });
+          });
+          view.model.on('delete-success', function() {
+            console.log('delete success');
+            delete view;
+            that.navigate('uberlocs', { trigger: true });
           });
         },
         error   : function(model, res) {

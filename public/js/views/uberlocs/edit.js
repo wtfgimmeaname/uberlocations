@@ -15,7 +15,8 @@ define('UberLocsEditView', [
     events: {
       "focus .input-prepend input" : "removeErrMsg",
       "click .save-btn"            : "saveUberLoc",
-      "click .back-btn"            : "goBack"
+      "click .back-btn"            : "goBack",
+      "click .delete-btn"          : "deleteUberLoc"
     },
 
     render: function() {
@@ -45,6 +46,22 @@ define('UberLocsEditView', [
       // Build coordinates
       this.model.set({ name: name, address: address }, { silent: true });
       google.getCoordinates(address, this);
+    },
+
+    deleteUberLoc: function(e) {
+      e.preventDefault();
+
+      this.model.destroy({
+        success : function(model, res) {
+          if (res && res.errors) { that.renderErrMsg(res.errors); }
+          else { model.trigger('delete-success'); }
+        },
+        error: function(model, res) {
+          if (res && res.errors) { that.renderErrMsg(res.errors); }
+          else if (res.status === 404) {} // TODO: handle 404 Not Found
+          else if (res.status === 500) {} // TODO: handle 500 Internal Server Error
+        }
+      });
     },
 
     coordsCallback: function(lat, lng) {

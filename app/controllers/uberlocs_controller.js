@@ -15,7 +15,7 @@ UberLocsController = function(app, mongoose, config) {
     });
   });
 
-  app.get(v1 + '/uberloc/:id', function show(req, res, next) {
+  app.get(v1 + '/uberlocs/:id', function show(req, res, next) {
     UberLoc.findById(req.params.id, function(err, loc) {
       checkErr(
         next,
