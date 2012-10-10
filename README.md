@@ -1,7 +1,7 @@
 Uber Locations
 ==============
 
-App for users to store Uber locations
+App for users to store Uber locations.
 If you want to get this running locally:
 
 * Install mongo and run `mongod`
